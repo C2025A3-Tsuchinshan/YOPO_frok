@@ -9,14 +9,14 @@
 - **hardware/**：无人机硬件清单与结构件。
 
 ## 数据流与训练流程
-1. **数据采集**：在 `Simulator` 中执行 `rosrun sensor_simulator dataset_generator` 生成深度图与 `pose-*.csv`，默认保存至 `YOPO/dataset`。
-2. **数据组织**：每个子目录存放一组 `.png` 深度图和对应的 `pose-{idx}.csv`（位置+四元数），路径由 `YOPO/config/traj_opt.yaml: dataset_path` 指定。
-3. **训练**：`YOPO/train_yopo.py` 调用 `policy.YopoTrainer`，核心组件：
+1. **数据采集：** 在 `Simulator` 中执行 `rosrun sensor_simulator dataset_generator` 生成深度图与 `pose-*.csv`，默认保存至 `YOPO/dataset`。
+2. **数据组织：** 每个子目录存放一组 `.png` 深度图和对应的 `pose-{idx}.csv`（位置+四元数），路径由 `YOPO/config/traj_opt.yaml` 的 `dataset_path` 键指定。
+3. **训练：** `YOPO/train_yopo.py` 调用 `policy.YopoTrainer`，核心组件：
    - `policy/yopo_dataset.py` 随机采样速度、加速度、目标并读取深度图。
    - `policy/yopo_network.py`（ResNet 骨干 + 轨迹头）输出末端状态与评分。
    - `loss/loss_function.py` 计算平滑、碰撞、目标、加速度等成本。
    - 关键超参由 `config/traj_opt.yaml` 给出（轨迹数量、FOV、损失权重、速度/加速度范围等）。
-4. **模型保存**：日志与权重保存在 `YOPO/saved/YOPO_<trial>/epoch*.pth`。
+4. **模型保存：** 日志与权重保存在 `YOPO/saved/YOPO_<trial>/epoch*.pth`。
 
 ## 推理与联调流程
 1. 启动 `Controller`（姿态控制模式）和 `Simulator`（建议 CUDA 版本）。
