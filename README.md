@@ -22,6 +22,9 @@ Some realworld experiment: [YouTube](https://youtu.be/LHvtbKmTwvE), [bilibili](h
 ### Hardware:
 Our drone designed by [@Mioulo](https://github.com/Mioulo) is also open-source. The hardware components are listed in [hardware_list.pdf](hardware/hardware_list.pdf), and the SolidWorks file of carbon fiber frame can be found in [/hardware](hardware/).
 
+### Project Overview
+For a concise Chinese walkthrough of the repository structure, data flow, and key entry points, see [docs/yopo_project_analysis.md](docs/yopo_project_analysis.md).
+
 ## Introduction:
 We propose **a learning-based planner for autonomous navigation in obstacle-dense environments** which integrates (i) perception and mapping, (ii) front-end path searching, and (iii) back-end optimization of classical methods into a single network. 
 
